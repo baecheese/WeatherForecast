@@ -12,9 +12,7 @@
 * 원하는 지역에 관측소가 있는지 검색하고, 저장한다.
 
 ### 날씨정보
-![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/view_1.png?raw=true)
-![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/view_2.png?raw=true)
-![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/view_3.png?raw=true)
+![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/weatherView.jpg?raw=true)
 * 저장한 도시를 누르면 현재 날씨 정보를 알려준다.
 * 날씨에 따라 배경화면을 다르게 보여준다.
 
