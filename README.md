@@ -27,11 +27,6 @@ func requestREST() {
 }
 ```
 
-###  App Transport Security Setting
-![](Plan/App Transport Security Setting)
-* 위의 방법은 모든 HTTP를 허용하는 방법이므로 실제 사용에서는 적합하지 않음
-* 참고 - [블로가 되어 날아보자 iOS iOS9 App Transport Security 설정법](http://blowmj.tistory.com/entry/iOS-iOS9-App-Transport-Security-%EC%84%A4%EC%A0%95%EB%B2%95)
-
 ## Response
 ```
 🌈 Success with JSON :  {
