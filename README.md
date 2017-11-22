@@ -20,7 +20,7 @@
 * [SK Weather API](https://developers.skplanetx.com/apidoc/kor/weather/)
 * [Alamofire](https://github.com/Alamofire/Alamofire)
 
-## Request
+## Request Example
 ``` Swift
 func requestREST() {
   let weatherURL = "http://apis.skplanetx.com/weather/current/minutely"
@@ -43,7 +43,7 @@ func requestREST() {
 }
 ```
 
-## Response
+## Response Example
 ```
 🌈 Success with JSON :  {
     common =     {
