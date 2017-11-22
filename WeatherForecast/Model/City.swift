@@ -8,7 +8,7 @@
 
 import Foundation
 
-class City : NSObject {
+class City {
     
     let version = "1"
     let city:String

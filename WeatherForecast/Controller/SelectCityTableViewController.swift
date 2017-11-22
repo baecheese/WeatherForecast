@@ -16,7 +16,8 @@ class SelectCityTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +28,14 @@ class SelectCityTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "city"
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if 0 < dataCenter.count() {
             return dataCenter.count()

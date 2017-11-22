@@ -52,6 +52,7 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     func setBackgroundImage(info:[String:Any]) {
         if let skyCode = MyJSONPaser.sharedInstance.getByQuery(query: "sky.code", JSONDic: info) as? String {
             backgroundImage.image = UIImage(named: weatherInfo.getSkyImageName(name: skyCode))
+            backgroundImage.contentMode = .scaleAspectFill
             backgroundImage.alpha = 0.8
         }
     }
