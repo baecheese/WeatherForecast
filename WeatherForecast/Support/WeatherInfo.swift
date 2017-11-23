@@ -47,23 +47,29 @@ struct WeatherInfo {
     func getSkyImageName(name:String) -> String {
         switch name {
         case "SKY_A01" :
-            return "01.jpg"
-        case "SKY_A02",
-             "SKY_A03",
-             "SKY_A04",
-             "SKY_A05",
-             "SKY_A06" :
-            return "2-6.JPG"
-        case "SKY_A07",
-             "SKY_A08",
-             "SKY_A09",
-             "SKY_A10",
-             "SKY_A11" :
-            return "7-11.jpg"
-        case "SKY_A12",
+            return "sunny.jpg"
+        case "SKY_A02" :
+            return "cloud.jpg"
+        case "SKY_A03" :
+            return "cloudMany.jpg"
+        case "SKY_A04" :
+            return "rainAndSun.jpg"
+        case "SKY_A05" :
+            return "snowCloud.jpg"
+        case "SKY_A06" :
+            return "snowAndRain.jpg"
+        case "SKY_A07" :
+            return "notSunny.jpg"
+        case "SKY_A08" :
+            return "rain.jpg"
+        case "SKY_A09",
+            "SKY_A10" :
+            return "darkSnow.jpg"
+        case "SKY_A11",
+             "SKY_A12",
              "SKY_A13",
              "SKY_A14" :
-            return "12-14.jpg"
+            return "thunderstorm.jpg"
         default : break;
         }
         return "defaultImage.jpg"

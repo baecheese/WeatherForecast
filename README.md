@@ -6,8 +6,8 @@
 * 사용자 지정 도시 저장 (진행중 ing....)
 
 ## 시연
-![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/use.gif?raw=true)
-
+![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/use1.gif?raw=true)
+![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/use2.gif?raw=true)
 
 ##  앱 이미지
 ### 도시 검색 / 저장

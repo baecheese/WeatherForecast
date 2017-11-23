@@ -46,7 +46,31 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
             setBackgroundImage(info: minutely[0])
             setTopInformation(info: minutely[0])
             tableview.reloadData()
+            changeBackground()//test
         }
+    }
+    
+    //test
+    func changeBackground() {
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.alpha = 0.8
+    }
+    
+    var num = 1
+    @objc func runTimedCode() {
+        var skyCode = "SKY_A"
+        var codeNum = "\(num)"
+        if num < 10 {
+            codeNum = "0\(num)"
+        }
+        if 15 == num {
+            num = 1
+            codeNum = "01"
+        }
+        sky.text = weatherInfo.getSkyState(code: skyCode + codeNum)
+        backgroundImage.image = UIImage(named: weatherInfo.getSkyImageName(name: skyCode + codeNum))
+        num += 1
     }
     
     func setBackgroundImage(info:[String:Any]) {
@@ -60,6 +84,8 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     func setTopInformation(info:[String:Any]) {
         if let nowTemperature = MyJSONPaser.sharedInstance.getByQuery(query: "temperature.tc", JSONDic: info) as? String,
             let skyCode = MyJSONPaser.sharedInstance.getByQuery(query: "sky.code", JSONDic: info) as? String {
+            
+            backgroundImage.image = UIImage(named: weatherInfo.getSkyImageName(name: skyCode))//test
             sky.text = weatherInfo.getSkyState(code: skyCode)
             temparature.text = nowTemperature + weatherInfo.getUnit(key: "temperature.tc")
         }
