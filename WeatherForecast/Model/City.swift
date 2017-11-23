@@ -27,5 +27,4 @@ class City: Object {
     func getParmeters() -> [String:String] {
         return ["version" : self.version, "city" : self.city, "county" : self.county, "village" : self.village]
     }
-    
 }

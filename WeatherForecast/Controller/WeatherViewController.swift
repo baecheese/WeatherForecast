@@ -15,8 +15,7 @@ class WeatherCell: UITableViewCell {
 
 class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    var city:City? = nil
-    var selectArea = ""
+    var seletedCity:City? = nil
     let weatherManager = WeatherManager()
     let weatherInfo = WeatherInfo()
     
@@ -27,7 +26,8 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
         tableview.dataSource = self
         tableview.allowsSelection = false
         
-        weatherManager.getMintely(city: city!)
+        weatherManager.getMintely(city: seletedCity!)
+        area.text = seletedCity!.fullName
     }
     
     @IBOutlet var area: UILabel!
@@ -60,7 +60,6 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     func setTopInformation(info:[String:Any]) {
         if let nowTemperature = MyJSONPaser.sharedInstance.getByQuery(query: "temperature.tc", JSONDic: info) as? String,
             let skyCode = MyJSONPaser.sharedInstance.getByQuery(query: "sky.code", JSONDic: info) as? String {
-            area.text = selectArea
             sky.text = weatherInfo.getSkyState(code: skyCode)
             temparature.text = nowTemperature + weatherInfo.getUnit(key: "temperature.tc")
         }

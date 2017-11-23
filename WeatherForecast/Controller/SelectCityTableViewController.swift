@@ -11,8 +11,7 @@ import Alamofire
 
 class SelectCityTableViewController: UITableViewController {
     
-    var dataIsEmpty = false
-    let dataCenter = DataCenter()
+    var allCity = CityRepository.shareInstance.getAllList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,45 +28,66 @@ class SelectCityTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if 0 == section {
+            return "current location"
+        }
         return "city"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if 0 < dataCenter.count() {
-            return dataCenter.count()
+        if 0 == section {
+            return 1
         }
-        dataIsEmpty = true
+        if 0 < allCity.count {
+            return allCity.count
+        }
         return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
-        if true == dataIsEmpty {
-            cell.textLabel?.text = "저장된 도시가 없습니다."
-            cell.textLabel?.textColor = .gray
+        if 1 == indexPath.section {
+            if allCity.isEmpty {
+                cell.textLabel?.text = "저장된 도시가 없습니다."
+                cell.textLabel?.textColor = .gray
+                cell.selectionStyle = .none
+            }
+            else {
+                cell.textLabel?.textColor = .black
+                cell.textLabel?.text = allCity[indexPath.row].fullName
+                cell.selectionStyle = .gray
+            }
+            return cell
         }
-        else {
-            cell.textLabel?.textColor = .black
-            cell.textLabel?.text = dataCenter.getCity(id: indexPath.row)?.fullName
-        }
+        cell.backgroundColor = .gray
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let weatherPage = storyboard?.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController {
-            // to do
-            if 0 == indexPath.row {
-                weatherPage.city = City(city: "서울", county: "강남구", village: "도곡동")
+        if false == allCity.isEmpty {
+            if let weatherPage = storyboard?.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController,
+                1 == indexPath.section {
+                weatherPage.seletedCity = allCity[indexPath.row]
+                self.navigationController?.pushViewController(weatherPage, animated: true)
             }
-            else {
-                weatherPage.city = City(city: "고양", county: "덕양구", village: "화정동")
-            }
-//            weatherPage.selectArea = CityInfo().citys[indexPath.row]
-            self.navigationController?.pushViewController(weatherPage, animated: true)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if 0 == indexPath.section {
+            return false
+        }
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            CityRepository.shareInstance.delete(city:allCity[indexPath.row])
+            tableView.reloadData()
         }
     }
 

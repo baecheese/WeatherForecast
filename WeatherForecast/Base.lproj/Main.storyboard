@@ -15,7 +15,7 @@
         <!--Select City Table View Controller-->
         <scene sceneID="N6R-rD-d8R">
             <objects>
-                <tableViewController storyboardIdentifier="SelectCityTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6J1-mh-sfT" customClass="SelectCityTableViewController" customModule="SetOfPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SelectCityTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6J1-mh-sfT" customClass="SelectCityTableViewController" customModule="WeatherForecast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Z1A-9i-vOQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,8 +50,7 @@
         <!--Search City View Controller-->
         <scene sceneID="Qjg-2v-fZi">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5vo-wI-mgq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="SearchCityViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rX8-uw-PZV" customClass="SearchCityViewController" customModule="SetOfPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchCityViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rX8-uw-PZV" customClass="SearchCityViewController" customModule="WeatherForecast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4mu-Jg-JoO"/>
                         <viewControllerLayoutGuide type="bottom" id="p3V-27-NMK"/>
@@ -136,6 +135,7 @@
                         <outlet property="textField" destination="hdH-TE-9ne" id="925-Oi-ear"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5vo-wI-mgq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="pKc-M8-peX">
                     <connections>
                         <action selector="saveCity:" destination="rX8-uw-PZV" id="Obb-mu-tqf"/>
@@ -147,7 +147,7 @@
         <!--Weather View Controller-->
         <scene sceneID="f0E-b4-giD">
             <objects>
-                <viewController storyboardIdentifier="WeatherViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vc7-DC-oc8" customClass="WeatherViewController" customModule="SetOfPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeatherViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vc7-DC-oc8" customClass="WeatherViewController" customModule="WeatherForecast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9P8-6n-ndi"/>
                         <viewControllerLayoutGuide type="bottom" id="NYE-2c-3NZ"/>
@@ -166,46 +166,50 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sky" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1N-6n-pxs">
-                                                <rect key="frame" x="0.0" y="88" width="375" height="20"/>
+                                                <rect key="frame" x="0.0" y="70" width="375" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="U4o-c9-A9p"/>
+                                                    <constraint firstAttribute="height" constant="40" id="U4o-c9-A9p"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQK-8O-hR8">
-                                                <rect key="frame" x="106.5" y="118" width="162.5" height="33.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQK-8O-hR8">
+                                                <rect key="frame" x="0.0" y="110" width="375" height="55.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="51"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="area" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSd-uP-crv">
-                                                <rect key="frame" x="0.0" y="20" width="375" height="68"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <rect key="frame" x="0.0" y="40" width="375" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="RE4-e0-7cF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="D1N-6n-pxs" firstAttribute="top" secondItem="hSd-uP-crv" secondAttribute="bottom" id="2iJ-oa-dZe"/>
-                                            <constraint firstAttribute="trailing" secondItem="D1N-6n-pxs" secondAttribute="trailing" id="5s8-hH-FWk"/>
-                                            <constraint firstItem="IQK-8O-hR8" firstAttribute="centerX" secondItem="I9U-Ga-z7i" secondAttribute="centerX" id="Atr-fs-J3y"/>
-                                            <constraint firstItem="IQK-8O-hR8" firstAttribute="top" secondItem="D1N-6n-pxs" secondAttribute="bottom" constant="10" id="L6E-GS-mm6"/>
-                                            <constraint firstAttribute="trailing" secondItem="hSd-uP-crv" secondAttribute="trailing" id="Nsu-2Q-lo4"/>
-                                            <constraint firstItem="hSd-uP-crv" firstAttribute="leading" secondItem="I9U-Ga-z7i" secondAttribute="leading" id="aJ8-5s-1eI"/>
-                                            <constraint firstItem="D1N-6n-pxs" firstAttribute="leading" secondItem="I9U-Ga-z7i" secondAttribute="leading" id="eGU-ca-thx"/>
-                                            <constraint firstItem="IQK-8O-hR8" firstAttribute="centerY" secondItem="I9U-Ga-z7i" secondAttribute="centerY" multiplier="5:4" id="gTf-ZN-cWC"/>
-                                            <constraint firstItem="hSd-uP-crv" firstAttribute="top" secondItem="I9U-Ga-z7i" secondAttribute="top" constant="20" id="i5v-TD-F7o"/>
+                                            <constraint firstItem="hSd-uP-crv" firstAttribute="top" secondItem="I9U-Ga-z7i" secondAttribute="top" constant="40" id="1CC-Re-Bdp"/>
+                                            <constraint firstItem="hSd-uP-crv" firstAttribute="leading" secondItem="I9U-Ga-z7i" secondAttribute="leading" id="1LU-5T-9ez"/>
+                                            <constraint firstAttribute="trailing" secondItem="hSd-uP-crv" secondAttribute="trailing" id="HaA-v3-SWl"/>
+                                            <constraint firstItem="D1N-6n-pxs" firstAttribute="top" secondItem="hSd-uP-crv" secondAttribute="bottom" id="SVH-iZ-OdL"/>
+                                            <constraint firstItem="IQK-8O-hR8" firstAttribute="top" secondItem="D1N-6n-pxs" secondAttribute="bottom" id="Y8U-4i-VWO"/>
+                                            <constraint firstAttribute="bottom" secondItem="IQK-8O-hR8" secondAttribute="bottom" constant="50" id="em4-Yf-2jZ"/>
+                                            <constraint firstItem="IQK-8O-hR8" firstAttribute="leading" secondItem="I9U-Ga-z7i" secondAttribute="leading" id="kTi-p8-JxR"/>
+                                            <constraint firstItem="D1N-6n-pxs" firstAttribute="leading" secondItem="I9U-Ga-z7i" secondAttribute="leading" id="lJh-7c-BmX"/>
+                                            <constraint firstAttribute="trailing" secondItem="D1N-6n-pxs" secondAttribute="trailing" id="uh8-cY-8Yg"/>
+                                            <constraint firstAttribute="trailing" secondItem="IQK-8O-hR8" secondAttribute="trailing" id="wDN-3u-ht5"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-vF-xQd">
                                         <rect key="frame" x="0.0" y="215.5" width="375" height="431.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="100" id="M9C-mJ-CNC" customClass="WeatherCell" customModule="SetOfPractice" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="100" id="M9C-mJ-CNC" customClass="WeatherCell" customModule="WeatherForecast" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M9C-mJ-CNC" id="HN0-nE-jgI">

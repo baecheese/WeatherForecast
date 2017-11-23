@@ -20,7 +20,6 @@
 		035AFD1E1FC5553A00448767 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AFD151FC5553900448767 /* WeatherInfo.swift */; };
 		035AFD1F1FC5553A00448767 /* SelectCityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AFD161FC5553900448767 /* SelectCityTableViewController.swift */; };
 		035AFD211FC5553A00448767 /* ForecastType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AFD181FC5553A00448767 /* ForecastType.swift */; };
-		035AFD221FC5553A00448767 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AFD191FC5553A00448767 /* DataCenter.swift */; };
 		035AFD2E1FC5575800448767 /* 12-14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 035AFD281FC5575800448767 /* 12-14.jpg */; };
 		035AFD2F1FC5575800448767 /* 2-6.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 035AFD291FC5575800448767 /* 2-6.JPG */; };
 		035AFD301FC5575800448767 /* 01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 035AFD2A1FC5575800448767 /* 01.jpg */; };
@@ -32,6 +31,7 @@
 		035AFD3A1FC6886300448767 /* ImageCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AFD391FC6886300448767 /* ImageCoverView.swift */; };
 		035AFD3C1FC6920400448767 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AFD3B1FC6920400448767 /* City.swift */; };
 		035AFD3E1FC6931700448767 /* CityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AFD3D1FC6931700448767 /* CityRepository.swift */; };
+		035AFD401FC6967C00448767 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AFD3F1FC6967C00448767 /* Logger.swift */; };
 		178ABC8990C06DEAD11C54A9 /* Pods_WeatherForecastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D36F83275D705C3DF112FC0 /* Pods_WeatherForecastUITests.framework */; };
 		83A586873363291B291AFAC8 /* Pods_WeatherForecast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C071AF4E100D221C6E2BFB /* Pods_WeatherForecast.framework */; };
 		DC2C4E4359C220FA39A0C96B /* Pods_WeatherForecastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB3B452DED6D019C7AC795D /* Pods_WeatherForecastTests.framework */; };
@@ -74,7 +74,6 @@
 		035AFD151FC5553900448767 /* WeatherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		035AFD161FC5553900448767 /* SelectCityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityTableViewController.swift; sourceTree = "<group>"; };
 		035AFD181FC5553A00448767 /* ForecastType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastType.swift; sourceTree = "<group>"; };
-		035AFD191FC5553A00448767 /* DataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
 		035AFD281FC5575800448767 /* 12-14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "12-14.jpg"; sourceTree = "<group>"; };
 		035AFD291FC5575800448767 /* 2-6.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2-6.JPG"; sourceTree = "<group>"; };
 		035AFD2A1FC5575800448767 /* 01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01.jpg; sourceTree = "<group>"; };
@@ -86,6 +85,7 @@
 		035AFD391FC6886300448767 /* ImageCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCoverView.swift; sourceTree = "<group>"; };
 		035AFD3B1FC6920400448767 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		035AFD3D1FC6931700448767 /* CityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRepository.swift; sourceTree = "<group>"; };
+		035AFD3F1FC6967C00448767 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		08B10ED610538ACD86289DFA /* Pods-WeatherForecastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForecastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForecastUITests/Pods-WeatherForecastUITests.release.xcconfig"; sourceTree = "<group>"; };
 		339BB6D419158C5C3AEDFF7F /* Pods-WeatherForecastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForecastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForecastTests/Pods-WeatherForecastTests.release.xcconfig"; sourceTree = "<group>"; };
 		56C071AF4E100D221C6E2BFB /* Pods_WeatherForecast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherForecast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +186,6 @@
 		035AFD231FC5567800448767 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				035AFD191FC5553A00448767 /* DataCenter.swift */,
 				035AFD3B1FC6920400448767 /* City.swift */,
 				035AFD3D1FC6931700448767 /* CityRepository.swift */,
 			);
@@ -228,6 +227,7 @@
 		035AFD271FC556C100448767 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				035AFD3F1FC6967C00448767 /* Logger.swift */,
 				035AFD351FC55DB900448767 /* Extension.swift */,
 				035AFD181FC5553A00448767 /* ForecastType.swift */,
 				035AFD141FC5553900448767 /* MyJSONPaser.swift */,
@@ -572,7 +572,6 @@
 			files = (
 				035AFD211FC5553A00448767 /* ForecastType.swift in Sources */,
 				035AFD1E1FC5553A00448767 /* WeatherInfo.swift in Sources */,
-				035AFD221FC5553A00448767 /* DataCenter.swift in Sources */,
 				035AFD1A1FC5553A00448767 /* WeatherManager.swift in Sources */,
 				035AFD381FC6820000448767 /* WeatherStatusBackground.swift in Sources */,
 				035AFD361FC55DB900448767 /* Extension.swift in Sources */,
@@ -580,6 +579,7 @@
 				035AFD3A1FC6886300448767 /* ImageCoverView.swift in Sources */,
 				035AFD1C1FC5553A00448767 /* SearchCityViewController.swift in Sources */,
 				035AFD1B1FC5553A00448767 /* WeatherViewController.swift in Sources */,
+				035AFD401FC6967C00448767 /* Logger.swift in Sources */,
 				035AFCE41FC554E000448767 /* AppDelegate.swift in Sources */,
 				035AFD1F1FC5553A00448767 /* SelectCityTableViewController.swift in Sources */,
 				035AFD3C1FC6920400448767 /* City.swift in Sources */,

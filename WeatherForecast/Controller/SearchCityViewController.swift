@@ -27,8 +27,8 @@ class SearchCityViewController: UIViewController, WeatherManagerDelegate {
     @IBAction func search(_ sender: UIButton) {
         if let cityFullName = textField.text, false == cityFullName.isEmpty {
             var cityArr = cityFullName.split(separator: " ").map { String($0) }
-            cityArr.append(cityFullName)
             if 3 == cityArr.count {
+                cityArr.append(cityFullName)
                 let city = City()
                 city.setInfo(cityInfos: cityArr)
                 searchedCity = city
@@ -40,6 +40,7 @@ class SearchCityViewController: UIViewController, WeatherManagerDelegate {
     func getMintelyWeather(info: [String : Any]) {
         if let errorMessage = MyJSONPaser.sharedInstance.getByQuery(query: "error.message", JSONDic: info) as? String {
             result.text = lineBreak(message: errorMessage)
+            searchedCity = nil
             isSuccess = false
         }
         else {
@@ -59,8 +60,9 @@ class SearchCityViewController: UIViewController, WeatherManagerDelegate {
     }
     
     @IBAction func saveCity(_ sender: UITapGestureRecognizer) {
-        if true == isSuccess && nil != searchedCity {
-            
+        if let city = searchedCity, true == isSuccess {
+            CityRepository.shareInstance.save(city: city)
+            dismiss(animated: true, completion: nil)
         }
     }
     
