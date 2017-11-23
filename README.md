@@ -5,6 +5,10 @@
 * 기본 UI (완료)
 * 사용자 지정 도시 저장 (진행중 ing....)
 
+## 시연
+![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/use.gif?raw=true)
+
+
 ##  앱 이미지
 ### 도시 검색 / 저장
 ![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/main.png?raw=true)
