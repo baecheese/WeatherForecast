@@ -25,10 +25,12 @@ class SearchCityViewController: UIViewController, WeatherManagerDelegate {
     
     
     @IBAction func search(_ sender: UIButton) {
-        if let cityInfo = textField.text, false == cityInfo.isEmpty {
-            let cityArr = cityInfo.split(separator: " ").map { String($0) }
+        if let cityFullName = textField.text, false == cityFullName.isEmpty {
+            var cityArr = cityFullName.split(separator: " ").map { String($0) }
+            cityArr.append(cityFullName)
             if 3 == cityArr.count {
-                let city = City(city: cityArr[0], county: cityArr[1], village: cityArr[2])
+                let city = City()
+                city.setInfo(cityInfos: cityArr)
                 searchedCity = city
                 weatherManager.getMintely(city: city)
             }
@@ -58,12 +60,7 @@ class SearchCityViewController: UIViewController, WeatherManagerDelegate {
     
     @IBAction func saveCity(_ sender: UITapGestureRecognizer) {
         if true == isSuccess && nil != searchedCity {
-            let dataCenter = DataCenter()
-            var newID = 0
-            if 0 < dataCenter.count() {
-                newID = dataCenter.count()
-            }
-            dataCenter.save(id: newID, city: searchedCity!)
+            
         }
     }
     

@@ -6,6 +6,7 @@ target 'WeatherForecast' do
   use_frameworks!
 
   pod 'Alamofire', '~> 4.5'
+  pod 'RealmSwift'
 
   # Pods for WeatherForecast
   target 'WeatherForecastTests' do

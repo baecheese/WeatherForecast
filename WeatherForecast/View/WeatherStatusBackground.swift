@@ -8,14 +8,16 @@
 
 import UIKit
 
-class WeatherStatusBackground: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+class WeatherStatusBackground: UIImageView {
+    
+    init(frame: CGRect, skyCode:String) {
+        super.init(frame: frame)
+        self.image = UIImage(named: WeatherInfo().getSkyImageName(name: skyCode))
+        
     }
-    */
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

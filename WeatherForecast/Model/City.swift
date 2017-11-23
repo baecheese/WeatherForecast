@@ -1,31 +1,31 @@
 //
 //  City.swift
-//  SetOfPractice
+//  WeatherForecast
 //
-//  Created by 배지영 on 2017. 11. 22..
-//  Copyright © 2017년 baecheese. All rights reserved.
+//  Created by 배지영 on 2017. 11. 23..
+//Copyright © 2017년 baecheese. All rights reserved.
 //
 
 import Foundation
+import RealmSwift
 
-class City {
+class City: Object {
     
-    let version = "1"
-    let city:String
-    let county:String
-    let village:String
-
-    let fullName:String
+    @objc dynamic let version = "1"
+    @objc dynamic var city = ""
+    @objc dynamic var county = ""
+    @objc dynamic var village = ""
+    @objc dynamic var fullName = ""
     
-    init(city:String, county:String, village:String) {
-        self.city = city
-        self.county = county
-        self.village = village
-        self.fullName = "\(city) \(county) \(village)"
+    func setInfo(cityInfos:[String]) {
+        self.city = cityInfos[0]
+        self.county = cityInfos[1]
+        self.village = cityInfos[2]
+        self.fullName = cityInfos[3]
     }
     
     func getParmeters() -> [String:String] {
-        return ["version" : version, "city" : city, "county" : county, "village" : village]
+        return ["version" : self.version, "city" : self.city, "county" : self.county, "village" : self.village]
     }
     
 }
