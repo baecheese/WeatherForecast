@@ -3,7 +3,8 @@
 * 날씨 정보 지원 도시 검색 (완료)
 * 날씨 정보 요청 (완료)
 * 기본 UI (완료)
-* 사용자 지정 도시 저장 (진행중 ing....)
+* 사용자 지정 도시 저장 (완료)
+* GPS 이용 현재 위치 날씨 알려주기 (진행중..)
 
 ## 시연
 ![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/use1.gif?raw=true)
