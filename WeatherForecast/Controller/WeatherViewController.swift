@@ -65,25 +65,22 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 self.sky.text = self.weatherInfo.getSkyState(code: skyCode)
                 self.temparature.text = nowTemperature + self.weatherInfo.getUnit(key: "temperature.tc")
-                self.alert.dismiss(withClickedButtonIndex: 0, animated: true)
+                self.alert.dismiss(animated: true, completion: nil)
             })
         }
     }
     
-    private let alert = UIAlertView(title: "Loading...", message: nil , delegate: nil, cancelButtonTitle: nil)
+    private let alert = UIAlertController(title: "loading", message: "\n\n\n", preferredStyle: UIAlertControllerStyle.alert)
     
     func showAlert() {
-        let viewBack:UIView = UIView(frame: CGRect(x: 83, y: 0,width: 100, height: 100))
-        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 50, y: 10, width: 37, height: 37))
-        loadingIndicator.center = viewBack.center
+        let loadingIndicator = UIActivityIndicatorView()
+        loadingIndicator.frame.size = CGSize(width: 130, height: 60)
+        loadingIndicator.center = alert.view.center
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.activityIndicatorViewStyle = .gray
         loadingIndicator.startAnimating()
-        viewBack.addSubview(loadingIndicator)
-        viewBack.center = self.view.center
-        alert.setValue(viewBack, forKey: "accessoryView")
-        loadingIndicator.startAnimating()
-        alert.show()
+        alert.view.addSubview(loadingIndicator)// todo
+        self.present(alert, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
