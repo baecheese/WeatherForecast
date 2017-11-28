@@ -8,14 +8,13 @@
 
 import UIKit
 
+private let _sharedInstance = MyJSONPaser()
 
-
-class MyJSONPaser: NSObject {
-    private override init() {
-        super.init()
-    }
+class MyJSONPaser {
     
-    static let sharedInstance:MyJSONPaser = MyJSONPaser()
+    class var sharedInstance: MyJSONPaser {
+        return _sharedInstance
+    }
     
     func parsingJSON(response:Any) -> [String : Any]? {
         if let dictionary = response as? [String : Any] {
