@@ -38,7 +38,9 @@
 		035AFD561FC6A98F00448767 /* snowAndRain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 035AFD511FC6A98F00448767 /* snowAndRain.jpg */; };
 		035AFD581FC6AA1E00448767 /* sunny.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 035AFD571FC6AA1E00448767 /* sunny.jpg */; };
 		035AFD5C1FC6B01700448767 /* darkSnow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 035AFD5B1FC6B01700448767 /* darkSnow.jpg */; };
-		03EAE79D1FCD24A800A2658A /* WaitNetworkAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EAE79C1FCD24A800A2658A /* WaitNetworkAlertView.swift */; };
+		03EAE7A21FCD28C400A2658A /* CurrentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EAE7A01FCD28C400A2658A /* CurrentLocationTableViewCell.swift */; };
+		03EAE7A31FCD28C400A2658A /* CurrentLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03EAE7A11FCD28C400A2658A /* CurrentLocationTableViewCell.xib */; };
+		03EAE7A51FCD294C00A2658A /* current.png in Resources */ = {isa = PBXBuildFile; fileRef = 03EAE7A41FCD294C00A2658A /* current.png */; };
 		178ABC8990C06DEAD11C54A9 /* Pods_WeatherForecastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D36F83275D705C3DF112FC0 /* Pods_WeatherForecastUITests.framework */; };
 		83A586873363291B291AFAC8 /* Pods_WeatherForecast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C071AF4E100D221C6E2BFB /* Pods_WeatherForecast.framework */; };
 		DC2C4E4359C220FA39A0C96B /* Pods_WeatherForecastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB3B452DED6D019C7AC795D /* Pods_WeatherForecastTests.framework */; };
@@ -99,7 +101,9 @@
 		035AFD511FC6A98F00448767 /* snowAndRain.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = snowAndRain.jpg; sourceTree = "<group>"; };
 		035AFD571FC6AA1E00448767 /* sunny.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunny.jpg; sourceTree = "<group>"; };
 		035AFD5B1FC6B01700448767 /* darkSnow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = darkSnow.jpg; sourceTree = "<group>"; };
-		03EAE79C1FCD24A800A2658A /* WaitNetworkAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitNetworkAlertView.swift; sourceTree = "<group>"; };
+		03EAE7A01FCD28C400A2658A /* CurrentLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationTableViewCell.swift; sourceTree = "<group>"; };
+		03EAE7A11FCD28C400A2658A /* CurrentLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentLocationTableViewCell.xib; sourceTree = "<group>"; };
+		03EAE7A41FCD294C00A2658A /* current.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = current.png; sourceTree = "<group>"; };
 		08B10ED610538ACD86289DFA /* Pods-WeatherForecastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForecastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForecastUITests/Pods-WeatherForecastUITests.release.xcconfig"; sourceTree = "<group>"; };
 		339BB6D419158C5C3AEDFF7F /* Pods-WeatherForecastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForecastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForecastTests/Pods-WeatherForecastTests.release.xcconfig"; sourceTree = "<group>"; };
 		56C071AF4E100D221C6E2BFB /* Pods_WeatherForecast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherForecast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,9 +213,10 @@
 		035AFD241FC5567F00448767 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				03EAE7A01FCD28C400A2658A /* CurrentLocationTableViewCell.swift */,
+				03EAE7A11FCD28C400A2658A /* CurrentLocationTableViewCell.xib */,
 				035AFD371FC6820000448767 /* WeatherStatusBackground.swift */,
 				035AFD391FC6886300448767 /* ImageCoverView.swift */,
-				03EAE79C1FCD24A800A2658A /* WaitNetworkAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 		035AFD261FC556A200448767 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				03EAE7A41FCD294C00A2658A /* current.png */,
 				035AFD571FC6AA1E00448767 /* sunny.jpg */,
 				035AFD4B1FC6A97F00448767 /* cloud.jpg */,
 				035AFD431FC6A5D400448767 /* cloudMany.jpg */,
@@ -404,11 +410,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03EAE7A31FCD28C400A2658A /* CurrentLocationTableViewCell.xib in Resources */,
 				035AFD561FC6A98F00448767 /* snowAndRain.jpg in Resources */,
 				035AFCEE1FC554E000448767 /* LaunchScreen.storyboard in Resources */,
 				035AFCEB1FC554E000448767 /* Assets.xcassets in Resources */,
 				035AFD531FC6A98F00448767 /* rainAndSun.jpg in Resources */,
 				035AFD5C1FC6B01700448767 /* darkSnow.jpg in Resources */,
+				03EAE7A51FCD294C00A2658A /* current.png in Resources */,
 				035AFD4C1FC6A97F00448767 /* cloud.jpg in Resources */,
 				035AFD421FC6A57900448767 /* rain.jpg in Resources */,
 				035AFCE91FC554E000448767 /* Main.storyboard in Resources */,
@@ -599,7 +607,6 @@
 			files = (
 				035AFD211FC5553A00448767 /* ForecastType.swift in Sources */,
 				035AFD1E1FC5553A00448767 /* WeatherInfo.swift in Sources */,
-				03EAE79D1FCD24A800A2658A /* WaitNetworkAlertView.swift in Sources */,
 				035AFD1A1FC5553A00448767 /* WeatherManager.swift in Sources */,
 				035AFD381FC6820000448767 /* WeatherStatusBackground.swift in Sources */,
 				035AFD361FC55DB900448767 /* Extension.swift in Sources */,
@@ -609,6 +616,7 @@
 				035AFD1B1FC5553A00448767 /* WeatherViewController.swift in Sources */,
 				035AFD401FC6967C00448767 /* Logger.swift in Sources */,
 				035AFCE41FC554E000448767 /* AppDelegate.swift in Sources */,
+				03EAE7A21FCD28C400A2658A /* CurrentLocationTableViewCell.swift in Sources */,
 				035AFD1F1FC5553A00448767 /* SelectCityTableViewController.swift in Sources */,
 				035AFD3C1FC6920400448767 /* City.swift in Sources */,
 				035AFD1D1FC5553A00448767 /* MyJSONPaser.swift in Sources */,

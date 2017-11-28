@@ -8,15 +8,19 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
-class SelectCityTableViewController: UITableViewController {
+class SelectCityTableViewController: UITableViewController, CLLocationManagerDelegate {
     
+    private var currentCity = ""
     var allCity = CityRepository.shareInstance.getAllList()
     
+    @IBOutlet var tableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        loadLaction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,10 +51,14 @@ class SelectCityTableViewController: UITableViewController {
         }
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50.0
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
         if 1 == indexPath.section {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
             if allCity.isEmpty {
                 cell.textLabel?.text = "저장된 도시가 없습니다."
                 cell.textLabel?.textColor = .gray
@@ -63,8 +71,9 @@ class SelectCityTableViewController: UITableViewController {
             }
             return cell
         }
-        cell.backgroundColor = .gray
-        return cell
+        let currentLocationCell = Bundle.main.loadNibNamed("CurrentLocationTableViewCell", owner: self, options: nil)?.first as! CurrentLocationTableViewCell
+        currentLocationCell.cityName.text = currentCity
+        return currentLocationCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -90,5 +99,50 @@ class SelectCityTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-
+    
+    private let locationManager = CLLocationManager()
+    
+    func loadLaction() {
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let coor = manager.location?.coordinate {
+            let location = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
+            CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+                if let placeMark = placemarks?.first {
+                    self.changeCurrentCityLabel(address: placeMark.name!)
+                }
+            })
+            locationManager.stopUpdatingLocation()
+        }
+    }
+    
+    func changeCurrentCityLabel(address:String) {
+        let addressInfo = address.split(separator: " ")
+        if "대한민국" == addressInfo[0] {
+            var city = ""
+            for info in addressInfo {
+                if info.last == "시" {
+                    var new = info
+                    new.removeLast()
+                    city += "\(new) "
+                }
+                else if info.last == "구" {
+                    city += "\(info) "
+                }
+                else if info.last == "동" {
+                    city += "\(info)"
+                }
+            }
+            currentCity = city
+            self.tableview.reloadData()
+            return;
+        }
+        currentCity = "지원하지 않는 국가입니다."
+    }
+    
 }
