@@ -13,7 +13,7 @@ import CoreLocation
 class SelectCityTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     private var currentCity = ""
-    var allCity = CityRepository.shareInstance.getAllList()
+    let allCity = CityRepository.shareInstance.getAllList()
     
     @IBOutlet var tableview: UITableView!
     override func viewDidLoad() {

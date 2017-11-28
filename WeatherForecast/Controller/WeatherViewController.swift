@@ -68,6 +68,7 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     }
     
     func failWeatherInfo(message:String) {
+        alert.title = "Fail"
         alert.message = message
     }
     
