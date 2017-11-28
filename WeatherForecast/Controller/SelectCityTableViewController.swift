@@ -78,9 +78,17 @@ class SelectCityTableViewController: UITableViewController, CLLocationManagerDel
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if false == allCity.isEmpty {
-            if let weatherPage = storyboard?.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController,
-                1 == indexPath.section {
-                weatherPage.seletedCity = allCity[indexPath.row]
+            if let weatherPage = storyboard?.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController {
+                if 0 == indexPath.section {
+                    var current = currentCity.split(separator: " ").map { String($0) }
+                    current.append(currentCity)
+                    let city = City()
+                    city.setInfo(cityInfos: current)
+                    weatherPage.seletedCity = city
+                }
+                if 1 == indexPath.section {
+                    weatherPage.seletedCity = allCity[indexPath.row]
+                }
                 self.navigationController?.pushViewController(weatherPage, animated: true)
             }
         }

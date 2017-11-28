@@ -42,13 +42,33 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     var minutelyWeather = [String : Any]()
     
     func getMintelyWeather(info: [String : Any]) {
+        
         let weather = MyJSONPaser.sharedInstance.getByQuery(query: "weather.minutely", JSONDic: info)
-        if let minutely = weather as? Array<[String:Any]> {
-            minutelyWeather = minutely[0]
-            setBackgroundImage(info: minutely[0])
-            setTopInformation(info: minutely[0])
-            tableview.reloadData()
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            var message = "fail"
+            if let minutely = weather as? Array<[String:Any]> {
+                self.succeseWeatherInfos(minutely: minutely)
+                return;
+            }
+            if let errorMessage =
+                MyJSONPaser.sharedInstance.getByQuery(query: "error.message", JSONDic: info) as? String {
+                message = errorMessage
+            }
+            self.failWeatherInfo(message: message)
+        })
+
+    }
+    
+    func succeseWeatherInfos(minutely:Array<[String:Any]>) {
+        minutelyWeather = minutely[0]
+        setBackgroundImage(info: minutely[0])
+        setTopInformation(info: minutely[0])
+        tableview.reloadData()
+        self.alert.dismiss(animated: true, completion: nil)
+    }
+    
+    func failWeatherInfo(message:String) {
+        alert.message = message
     }
     
     func setBackgroundImage(info:[String:Any]) {
@@ -62,24 +82,20 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     func setTopInformation(info:[String:Any]) {
         if let nowTemperature = MyJSONPaser.sharedInstance.getByQuery(query: "temperature.tc", JSONDic: info) as? String,
             let skyCode = MyJSONPaser.sharedInstance.getByQuery(query: "sky.code", JSONDic: info) as? String {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            
                 self.sky.text = self.weatherInfo.getSkyState(code: skyCode)
                 self.temparature.text = nowTemperature + self.weatherInfo.getUnit(key: "temperature.tc")
-                self.alert.dismiss(animated: true, completion: nil)
-            })
+            
         }
     }
     
-    private let alert = UIAlertController(title: "loading", message: "\n\n\n", preferredStyle: UIAlertControllerStyle.alert)
+    private let alert = UIAlertController(title: "loading", message: "날씨 정보를 받는 중입니다.", preferredStyle: UIAlertControllerStyle.alert)
     
     func showAlert() {
-        let loadingIndicator = UIActivityIndicatorView()
-        loadingIndicator.frame.size = CGSize(width: 130, height: 60)
-        loadingIndicator.center = alert.view.center
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = .gray
-        loadingIndicator.startAnimating()
-        alert.view.addSubview(loadingIndicator)// todo
+        let cancel = UIAlertAction(title: "cancel", style: .cancel) { (Bool) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
     }
     
