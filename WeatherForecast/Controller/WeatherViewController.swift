@@ -28,6 +28,8 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
         
         weatherManager.getMintely(city: seletedCity!)
         area.text = seletedCity!.fullName
+        
+        showAlert()
     }
     
     @IBOutlet var area: UILabel!
@@ -60,11 +62,29 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     func setTopInformation(info:[String:Any]) {
         if let nowTemperature = MyJSONPaser.sharedInstance.getByQuery(query: "temperature.tc", JSONDic: info) as? String,
             let skyCode = MyJSONPaser.sharedInstance.getByQuery(query: "sky.code", JSONDic: info) as? String {
-            sky.text = weatherInfo.getSkyState(code: skyCode)
-            temparature.text = nowTemperature + weatherInfo.getUnit(key: "temperature.tc")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                self.sky.text = self.weatherInfo.getSkyState(code: skyCode)
+                self.temparature.text = nowTemperature + self.weatherInfo.getUnit(key: "temperature.tc")
+                self.alert.dismiss(withClickedButtonIndex: 0, animated: true)
+            })
         }
     }
     
+    private let alert = UIAlertView(title: "Loading...", message: nil , delegate: nil, cancelButtonTitle: nil)
+    
+    func showAlert() {
+        let viewBack:UIView = UIView(frame: CGRect(x: 83, y: 0,width: 100, height: 100))
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 50, y: 10, width: 37, height: 37))
+        loadingIndicator.center = viewBack.center
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = .gray
+        loadingIndicator.startAnimating()
+        viewBack.addSubview(loadingIndicator)
+        viewBack.center = self.view.center
+        alert.setValue(viewBack, forKey: "accessoryView")
+        loadingIndicator.startAnimating()
+        alert.show()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherInfo.detailInfos.count
