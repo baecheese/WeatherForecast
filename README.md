@@ -6,7 +6,7 @@
 * GPS 이용 현재 위치 날씨 알려주기
 
 ## 시연
-![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/use1.gif?raw=true)
+![](https://github.com/baecheese/WeatherForecast/blob/14eea01cb0c66c052965e56e4f22b1d502d90633/Plan/use1.gif?raw=true)
 ![](https://github.com/baecheese/WeatherForecast/blob/master/Plan/use2.gif?raw=true)
 
 ##  앱 이미지
