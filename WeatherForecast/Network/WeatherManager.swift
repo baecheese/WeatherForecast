@@ -15,6 +15,7 @@ protocol WeatherManagerDelegate {
 
 class WeatherManager: NSObject {
     
+    private let log = Logger(logPlace: WeatherManager.self)
     var delegate:WeatherManagerDelegate?
     
     override init() {

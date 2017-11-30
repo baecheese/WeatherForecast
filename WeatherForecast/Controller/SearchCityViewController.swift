@@ -38,8 +38,8 @@ class SearchCityViewController: UIViewController, WeatherManagerDelegate {
     }
     
     func getMintelyWeather(info: [String : Any]) {
-        if let errorMessage = MyJSONPaser.sharedInstance.getByQuery(query: "error.message", JSONDic: info) as? String {
-            result.text = lineBreak(message: errorMessage)
+        if let error = ErrorJSON(json: info) {
+            result.text = lineBreak(message: error.message)
             searchedCity = nil
             isSuccess = false
         }

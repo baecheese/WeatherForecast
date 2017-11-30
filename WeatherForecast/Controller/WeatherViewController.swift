@@ -18,6 +18,7 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     var seletedCity:City? = nil
     let weatherManager = WeatherManager()
     let weatherInfo = WeatherInfo()
+    var currentWeather:Weather? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,29 +43,29 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     var minutelyWeather = [String : Any]()
     
     func getMintelyWeather(info: [String : Any]) {
-        
-        let weather = MyJSONPaser.sharedInstance.getByQuery(query: "weather.minutely", JSONDic: info)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            var message = "fail"
-            if let minutely = weather as? Array<[String:Any]> {
-                self.succeseWeatherInfos(minutely: minutely)
+            var message = "Error"
+            if let weatherForcast = WeatherForecast(json: info) {
+                let weather = weatherForcast.weather
+                self.succeseWeatherInfos(weather: weather)
                 return;
             }
-            if let errorMessage =
-                MyJSONPaser.sharedInstance.getByQuery(query: "error.message", JSONDic: info) as? String {
-                message = errorMessage
+            if let error = ErrorJSON(json: info) {
+                message = error.message
+                self.failWeatherInfo(message: message)
             }
-            self.failWeatherInfo(message: message)
         })
-
     }
     
-    func succeseWeatherInfos(minutely:Array<[String:Any]>) {
-        minutelyWeather = minutely[0]
-        setBackgroundImage(info: minutely[0])
-        setTopInformation(info: minutely[0])
+    func succeseWeatherInfos(weather:Weather) {
+        currentWeather = weather
+        // todo - mintely를 구하는 것이 아닐 때의 확장성
+        if let sky = weather.minutely?.first?.sky {
+            setBackgroundImage(sky: sky)
+        }
+        setTopInformation(weather: weather)
         tableview.reloadData()
-        self.alert.dismiss(animated: true, completion: nil)
+        alert.dismiss(animated: true, completion: nil)
     }
     
     func failWeatherInfo(message:String) {
@@ -72,21 +73,19 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
         alert.message = message
     }
     
-    func setBackgroundImage(info:[String:Any]) {
-        if let skyCode = MyJSONPaser.sharedInstance.getByQuery(query: "sky.code", JSONDic: info) as? String {
-            backgroundImage.image = UIImage(named: weatherInfo.getSkyImageName(name: skyCode))
-            backgroundImage.contentMode = .scaleAspectFill
-            backgroundImage.alpha = 0.8
-        }
+    func setBackgroundImage(sky:Sky) {
+        backgroundImage.image = UIImage(named: weatherInfo.getSkyImageName(name: sky.code))
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.alpha = 0.8
+
     }
     
-    func setTopInformation(info:[String:Any]) {
-        if let nowTemperature = MyJSONPaser.sharedInstance.getByQuery(query: "temperature.tc", JSONDic: info) as? String,
-            let skyCode = MyJSONPaser.sharedInstance.getByQuery(query: "sky.code", JSONDic: info) as? String {
-            
-                self.sky.text = self.weatherInfo.getSkyState(code: skyCode)
-                self.temparature.text = nowTemperature + self.weatherInfo.getUnit(key: "temperature.tc")
-            
+    func setTopInformation(weather:Weather) {
+        // todo weather의 카테고리를 고를 수 잇을 때 (ex 분 별, 시간 별 ...)
+        if let minutely = weather.minutely?.first {
+            sky.text = weatherInfo.getSkyState(code: minutely.sky.code)
+            // todo
+            temparature.text = minutely.temperature.tc + weatherInfo.getUnit(type: minutely)
         }
     }
     
@@ -101,7 +100,7 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherInfo.detailInfos.count
+        return weatherInfo.detailKeys.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,11 +109,14 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        let name = weatherInfo.detailInfos[indexPath.row]
+        let name = weatherInfo.detailKeys[indexPath.row]
         cell.name.text = name
         cell.name.textColor = .black
-        if let value = MyJSONPaser.sharedInstance.getByQuery(query: weatherInfo.querys[name]!, JSONDic: minutelyWeather) as? String {
-            cell.value.text = value + weatherInfo.getUnit(key: name)
+        if let weather = currentWeather,
+            let weatherType = weather.minutely?.first {
+            //to do
+            cell.value.text = weatherInfo.getDetail(name: name, weatherType: weatherType) + weatherInfo.getUnit(type: weatherType)
+            
             cell.value.textColor = .black
         }
         else {

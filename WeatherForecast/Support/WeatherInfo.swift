@@ -75,17 +75,35 @@ struct WeatherInfo {
         return "defaultImage.jpg"
     }
     
-    let detailInfos = ["관측소", "최고 기온", "최저 기온", "바람", "1시간 누적 강수량"]
-    let querys = ["관측소" : "station.name", "1시간 누적 강수량" : "rain.sinceOntime", "현재 기온": "temperature.tc", "최고 기온":"temperature.tmax",
-                      "최저 기온" : "temperature.tmin", "바람" : "wind.wspd"]
+    let detailKeys = ["관측소", "최고 기온", "최저 기온", "바람", "1시간 누적 강수량"]
     
-    func getUnit(key:String) -> String {
-        switch key {
-        case "temperature.tc", "최고 기온", "최저 기온" :
+    func getDetail<T>(name:String, weatherType:T) -> String {
+        // to do
+        if let weather = weatherType as? Minutely {
+            switch name {
+            case detailKeys[0] :
+                return weather.station.name
+            case detailKeys[1] :
+                return weather.temperature.tmax
+            case detailKeys[2] :
+                return weather.temperature.tmin
+            case detailKeys[3] :
+                return weather.wind.wspd
+            case detailKeys[4] :
+                return weather.rain.sinceOntime
+            default: break;
+            }
+        }
+        return ""
+    }
+    
+    func getUnit<T>(type:T) -> String {
+        switch type {
+        case is Temperature :
             return "°"
-        case "바람" :
+        case is Wind :
             return "m/s"
-        case "1시량 누적 강수량" :
+        case is Rain :
             return "mm"
         default: break;
         }
