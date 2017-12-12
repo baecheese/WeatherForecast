@@ -8,9 +8,10 @@
 
 import Foundation
 
+/** common, result는 안써서 주석 */
 struct WeatherForecast: Codable {
-    var common:Commons?
-    var result:Result?
+//    var common:Commons?
+//    var result:Result?
     var weather:Weather
     
     init?(json: [String:Any]) {

@@ -37,6 +37,7 @@ class WeatherManager: NSObject {
                                 print(error)
                             }
         }
+        
     }
     
     func arrive(type:ForecastType, info:[String:Any]) {

@@ -37,20 +37,27 @@ public class Logger : NSObject {
     public func info(message:Any...) {
         let log = format(logLevel:LogLevel.INFO, message: message)
         print(log)
+        sendLine(log: log)
     }
     
     public func warn(message:Any...) {
         let log = format(logLevel:LogLevel.WARN, message: message)
         print(log)
+        sendLine(log: log)
     }
     
     public func error(message:Any...) {
         let log = format(logLevel:LogLevel.ERROR, message: message)
         print(log)
+        sendLine(log: log)
     }
     
     private func format(logLevel:LogLevel, message:Any) -> String {
         return "\(NSDate.init()) [\(logLevel)] \(_logPlace) - \(message)"
+    }
+    
+    private func sendLine(log:String) {
+        LineNotifyBot.sharedInstance.notify(sender: "WeatherForecast", message: log)
     }
     
     enum LogLevel {

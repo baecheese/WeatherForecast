@@ -20,6 +20,12 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     let weatherInfo = WeatherInfo()
     var currentWeather:Weather? = nil
     
+    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet var backgroundImage: UIImageView!
+    @IBOutlet var mainInfoView: MainWeatherInfoView!
+    
+    var minutelyWeather = [String : Any]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherManager.delegate = self
@@ -28,19 +34,11 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
         tableview.allowsSelection = false
         
         weatherManager.getMintely(city: seletedCity!)
-        area.text = seletedCity!.fullName
+        // todo
+//        area.text = seletedCity!.fullName
         
         showAlert()
     }
-    
-    @IBOutlet var area: UILabel!
-    @IBOutlet var sky: UILabel!
-    @IBOutlet var temparature: UILabel!
-    
-    @IBOutlet weak var tableview: UITableView!
-    
-    @IBOutlet var backgroundImage: UIImageView!
-    var minutelyWeather = [String : Any]()
     
     func getMintelyWeather(info: [String : Any]) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
@@ -83,9 +81,13 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     func setTopInformation(weather:Weather) {
         // todo weather의 카테고리를 고를 수 잇을 때 (ex 분 별, 시간 별 ...)
         if let minutely = weather.minutely?.first {
+            // to do
+//            mainInfoView.setData(minutely)
+            /* todo
             sky.text = weatherInfo.getSkyState(code: minutely.sky.code)
             // todo
             temparature.text = minutely.temperature.tc + weatherInfo.getUnit(type: minutely)
+             */
         }
     }
     

@@ -34,7 +34,7 @@ class CityRepository: NSObject {
     // 특정 데이터 인덱스 접근으로 삭제
     func delete(city:City) {
         try! realm.write {
-            log.debug(message: "\(city) 삭제")
+            log.info(message: "\(city) 삭제")
             realm.delete(city)
         }
     }

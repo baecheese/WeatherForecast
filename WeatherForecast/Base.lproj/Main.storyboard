@@ -165,9 +165,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="30i-2L-qjw">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9U-Ga-z7i">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9U-Ga-z7i" customClass="MainWeatherInfoView" customModule="WeatherForecast" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSd-uP-crv">
+                                                <rect key="frame" x="0.0" y="40" width="375" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="RE4-e0-7cF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1N-6n-pxs">
                                                 <rect key="frame" x="0.0" y="70" width="375" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -181,15 +190,6 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQK-8O-hR8">
                                                 <rect key="frame" x="0.0" y="110" width="375" height="55.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="51"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSd-uP-crv">
-                                                <rect key="frame" x="0.0" y="40" width="375" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="RE4-e0-7cF"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -207,6 +207,11 @@
                                             <constraint firstAttribute="trailing" secondItem="D1N-6n-pxs" secondAttribute="trailing" id="uh8-cY-8Yg"/>
                                             <constraint firstAttribute="trailing" secondItem="IQK-8O-hR8" secondAttribute="trailing" id="wDN-3u-ht5"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="area" destination="hSd-uP-crv" id="Q7t-II-qNp"/>
+                                            <outlet property="sky" destination="D1N-6n-pxs" id="EA5-1L-TMP"/>
+                                            <outlet property="temparature" destination="IQK-8O-hR8" id="fxT-TR-1rK"/>
+                                        </connections>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-vF-xQd">
                                         <rect key="frame" x="0.0" y="215.5" width="375" height="431.5"/>
@@ -297,11 +302,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="jsc-uR-nxc"/>
                     <connections>
-                        <outlet property="area" destination="hSd-uP-crv" id="l4q-jW-EBc"/>
                         <outlet property="backgroundImage" destination="WfM-JE-2Z9" id="r2L-Un-VpK"/>
-                        <outlet property="sky" destination="D1N-6n-pxs" id="sqO-dZ-TY1"/>
+                        <outlet property="mainInfoView" destination="I9U-Ga-z7i" id="r7w-yK-ZSl"/>
                         <outlet property="tableview" destination="v0O-vF-xQd" id="4rY-zZ-OhH"/>
-                        <outlet property="temparature" destination="IQK-8O-hR8" id="FZd-4U-zC6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgo-j6-68i" userLabel="First Responder" sceneMemberID="firstResponder"/>
