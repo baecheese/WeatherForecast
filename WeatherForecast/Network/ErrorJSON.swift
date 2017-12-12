@@ -9,13 +9,13 @@
 import Foundation
 
 struct ErrorJSON: Codable {
-    var code:String
+    var code:Int
     var message:String
     var id:String?
     var category:String?
     var link:String?
     init?(json:[String:Any]) {
-        if let errorCode = json["code"] as? String,
+        if let errorCode = json["code"] as? Int,
             let errorMessage = json["message"] as? String {
             self.code = errorCode
             self.message = errorMessage

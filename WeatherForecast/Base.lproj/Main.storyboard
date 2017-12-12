@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iGS-9C-AKo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iGS-9C-AKo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -165,7 +165,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="30i-2L-qjw">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9U-Ga-z7i" customClass="MainWeatherInfoView" customModule="WeatherForecast" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9U-Ga-z7i">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSd-uP-crv">
@@ -207,11 +207,6 @@
                                             <constraint firstAttribute="trailing" secondItem="D1N-6n-pxs" secondAttribute="trailing" id="uh8-cY-8Yg"/>
                                             <constraint firstAttribute="trailing" secondItem="IQK-8O-hR8" secondAttribute="trailing" id="wDN-3u-ht5"/>
                                         </constraints>
-                                        <connections>
-                                            <outlet property="area" destination="hSd-uP-crv" id="Q7t-II-qNp"/>
-                                            <outlet property="sky" destination="D1N-6n-pxs" id="EA5-1L-TMP"/>
-                                            <outlet property="temparature" destination="IQK-8O-hR8" id="fxT-TR-1rK"/>
-                                        </connections>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-vF-xQd">
                                         <rect key="frame" x="0.0" y="215.5" width="375" height="431.5"/>
@@ -302,9 +297,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="jsc-uR-nxc"/>
                     <connections>
+                        <outlet property="area" destination="hSd-uP-crv" id="6qd-5x-RCz"/>
                         <outlet property="backgroundImage" destination="WfM-JE-2Z9" id="r2L-Un-VpK"/>
-                        <outlet property="mainInfoView" destination="I9U-Ga-z7i" id="r7w-yK-ZSl"/>
+                        <outlet property="sky" destination="D1N-6n-pxs" id="Gjv-J4-Upg"/>
                         <outlet property="tableview" destination="v0O-vF-xQd" id="4rY-zZ-OhH"/>
+                        <outlet property="temparature" destination="IQK-8O-hR8" id="78J-WE-DbI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgo-j6-68i" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -22,8 +22,10 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet var backgroundImage: UIImageView!
-    @IBOutlet var mainInfoView: MainWeatherInfoView!
     
+    @IBOutlet var area: UILabel!
+    @IBOutlet var sky: UILabel!
+    @IBOutlet var temparature: UILabel!
     var minutelyWeather = [String : Any]()
     
     override func viewDidLoad() {
@@ -34,24 +36,24 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
         tableview.allowsSelection = false
         
         weatherManager.getMintely(city: seletedCity!)
-        // todo
-//        area.text = seletedCity!.fullName
+        area.text = seletedCity!.fullName
         
         showAlert()
     }
     
     func getMintelyWeather(info: [String : Any]) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            var message = "Error"
+            var message = "An unknown error has occurred"
             if let weatherForcast = WeatherForecast(json: info) {
                 let weather = weatherForcast.weather
                 self.succeseWeatherInfos(weather: weather)
                 return;
             }
-            if let error = ErrorJSON(json: info) {
-                message = error.message
-                self.failWeatherInfo(message: message)
+            if let error = info["error"] as? [String : Any],
+                let errorJSON = ErrorJSON(json: error) {
+                message = errorJSON.message
             }
+            self.failWeatherInfo(message: message)
         })
     }
     
@@ -67,7 +69,7 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     }
     
     func failWeatherInfo(message:String) {
-        alert.title = "Fail"
+        alert.title = "error"
         alert.message = message
     }
     
@@ -81,13 +83,8 @@ class WeatherViewController: UIViewController, WeatherManagerDelegate, UITableVi
     func setTopInformation(weather:Weather) {
         // todo weather의 카테고리를 고를 수 잇을 때 (ex 분 별, 시간 별 ...)
         if let minutely = weather.minutely?.first {
-            // to do
-//            mainInfoView.setData(minutely)
-            /* todo
             sky.text = weatherInfo.getSkyState(code: minutely.sky.code)
-            // todo
             temparature.text = minutely.temperature.tc + weatherInfo.getUnit(type: minutely)
-             */
         }
     }
     
