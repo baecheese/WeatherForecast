@@ -27,7 +27,9 @@ class WeatherManager: NSObject {
         let weatherURL = "http://apis.skplanetx.com/weather/current/minutely"
         let header : HTTPHeaders = ["appKey" : "c7c387b5-f5f7-3342-91dd-ae532e67ced7"]
         let parameters = city.getParmeters()
-        Alamofire.request(weatherURL, method: .get, parameters: parameters,
+        Alamofire.request(weatherURL,
+                          method: .get,
+                          parameters: parameters,
                           encoding: URLEncoding.default, headers: header).responseJSON { (response) in
                             switch response.result {
                             case .success(let JSON):
